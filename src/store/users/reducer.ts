@@ -1,4 +1,9 @@
-import { LOG_OUT, LOGIN_SUCCESS } from "./actions";
+import {
+  LOG_OUT,
+  LOGIN_SUCCESS,
+  TOKEN_STILL_VALID,
+  CREATE_NEW_SPACE,
+} from "./actions";
 import { User } from "../../types/userTypes";
 import { AuthTypes } from "../users/types";
 
@@ -7,6 +12,7 @@ const initialState: User = {
   name: null,
   email: null,
   token: localStorage.getItem("token"),
+  space: null,
 };
 
 export default function reducer(state = initialState, action: AuthTypes) {
@@ -19,6 +25,12 @@ export default function reducer(state = initialState, action: AuthTypes) {
       const userToken = action.payload!.token;
       if (userToken) localStorage.setItem("token", userToken);
       return { ...state, ...action.payload };
+    }
+    case TOKEN_STILL_VALID: {
+      return { ...state, ...action.payload };
+    }
+    case CREATE_NEW_SPACE: {
+      return { ...state, space: action.payload };
     }
     default: {
       return state;

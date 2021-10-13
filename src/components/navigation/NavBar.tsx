@@ -71,6 +71,15 @@ export default function ButtonAppBar(props: any) {
             width="100%"
             marginX={4}
           >
+            <Link style={{ color: "white", textDecoration: "none" }} to="/">
+              Home
+            </Link>
+            <Link
+              style={{ color: "white", textDecoration: "none" }}
+              to="/mySpace"
+            >
+              My Space
+            </Link>
             <Box>
               <IconButton
                 component={Link}

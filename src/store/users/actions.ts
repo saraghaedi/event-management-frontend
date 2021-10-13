@@ -1,5 +1,6 @@
 import { User, Credentials, SignupData } from "../../types/userTypes";
-import { AuthTypes } from "./types";
+import { Space } from "../../types/spaceTypes";
+import { AuthTypes, CreateSpaceAction } from "./types";
 import axios from "axios";
 import { Dispatch } from "redux";
 import { GetState } from "../types";
@@ -14,6 +15,8 @@ import {
 
 export const LOG_OUT = "LOG_OUT";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const TOKEN_STILL_VALID = "TOKEN_STILL_VALID";
+export const CREATE_NEW_SPACE = "CREATE_NEW_SPACE";
 
 export const logOut = (): AuthTypes => ({ type: LOG_OUT, payload: null });
 
@@ -23,8 +26,13 @@ export const loginSuccess = (user: User): AuthTypes => ({
 });
 
 export const tokenStillValid = (user: User): AuthTypes => ({
-  type: "TOKEN_STILL_VALID",
+  type: TOKEN_STILL_VALID,
   payload: user,
+});
+
+export const createSpaceAction = (space: Space): CreateSpaceAction => ({
+  type: CREATE_NEW_SPACE,
+  payload: space,
 });
 
 export const login = (credentials: Credentials) => {
@@ -58,7 +66,6 @@ export const signUp = (signUpData: SignupData) => {
   return async (dispatch: Dispatch, getState: GetState) => {
     dispatch(appLoading());
     const { name, email, password } = signUpData;
-    console.log("name", name, email, password);
     try {
       const response: any = await axios.post(`${apiUrl}/signup`, {
         email,
@@ -103,6 +110,42 @@ export const getUserWithStoredToken = () => {
       }
       dispatch(appDoneLoading());
       dispatch(logOut());
+    }
+  };
+};
+
+export const createSpace = (space: Space) => {
+  const { title, description, logo_url } = space;
+
+  return async function thunk(dispatch: Dispatch, getState: GetState) {
+    const token = selectToken(getState());
+    try {
+      dispatch(appLoading());
+      const response: any = await axios.post(
+        `${apiUrl}/spaces`,
+        {
+          title,
+          description,
+          logo_url,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      dispatch(createSpaceAction(response.data));
+      dispatch(
+        // @ts-ignore
+        showMessageWithTimeout("success", false, "Welcome Back!", 4000)
+      );
+      dispatch(appDoneLoading());
+    } catch (error: any) {
+      if (error.response) {
+        dispatch(setMessage("error", true, error.message));
+      } else {
+        dispatch(setMessage("error", true, error.message));
+      }
+      dispatch(appDoneLoading());
     }
   };
 };

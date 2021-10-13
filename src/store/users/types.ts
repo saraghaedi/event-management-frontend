@@ -1,4 +1,5 @@
 import { User } from "../../types/userTypes";
+import { Space } from "../../types/spaceTypes";
 
 export type logOut = {
   type: string;
@@ -15,4 +16,11 @@ export type tokenStillValid = {
   payload: User;
 };
 
+export type CreateSpaceAction = {
+  type: string;
+  payload: Space;
+};
+
 export type AuthTypes = fetchUser | tokenStillValid | logOut;
+
+export type UserActionTypes = AuthTypes | CreateSpaceAction;
