@@ -5,4 +5,14 @@ export type fetchEvents = {
   payload: Event[];
 };
 
-export type EventActions = fetchEvents;
+export type fetchEventByid = {
+  type: string;
+  payload: Event;
+};
+
+export type CreateEventAction = {
+  type: string;
+  payload: Event;
+};
+
+export type EventActions = fetchEvents | fetchEventByid | CreateEventAction;

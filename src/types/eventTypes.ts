@@ -1,11 +1,11 @@
 export type Event = {
-  id: number;
-  title: string;
-  description: string;
+  id: number | null;
+  title: string | null;
+  description: string | null;
   imageUrl: string | null;
-  start_date: Date;
-  end_date: Date;
-  capacity: number;
-  is_online: boolean;
-  location: string;
+  start_date: Date | null;
+  end_date: Date | null;
+  capacity: number | null;
+  is_online: boolean | null;
+  location: string | null;
 };

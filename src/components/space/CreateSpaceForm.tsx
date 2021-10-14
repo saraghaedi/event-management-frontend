@@ -9,6 +9,7 @@ import { createSpace } from "../../store/users/actions";
 export default function CreateSpaceForm() {
   const dispatch = useDispatch();
   const initialState = {
+    id: 0,
     title: "",
     description: "",
     logo_url: "",

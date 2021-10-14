@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import { Button } from "@material-ui/core";
 import EventCard from "../components/event/EventCard";
 import { Event } from "../types/eventTypes";
+import { Link } from "react-router-dom";
 
 export default function SpaceDetailsPage() {
   const space = useSelector(selectSpace);
@@ -25,13 +26,15 @@ export default function SpaceDetailsPage() {
       <Typography component="p" style={{ margin: "1em 0" }}>
         {space?.description}
       </Typography>
-      <Button
-        variant="contained"
-        color="primary"
-        style={{ margin: "2em auto", display: "flex" }}
-      >
-        Create a new event
-      </Button>
+      <Link to={`/${space.id}/newEvent`} style={{ textDecoration: "none" }}>
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ margin: "2em auto", display: "flex" }}
+        >
+          Create a new event
+        </Button>
+      </Link>
       <Box
         style={{
           display: "flex",

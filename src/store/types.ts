@@ -5,7 +5,7 @@ import { AppStateActionTypes } from "./appState/types";
 
 export type StoreState = {
   users: User;
-  events: Event[];
+  events: { all: Event[]; eventDetails: Event };
   appState: AppState;
 };
 
