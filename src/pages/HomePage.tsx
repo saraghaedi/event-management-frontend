@@ -6,7 +6,7 @@ import { selectAllEvents } from "../store/events/selectors";
 import { useEffect } from "react";
 import Box from "@mui/material/Box";
 import { Event } from "../types/eventTypes";
-
+import Typography from "@mui/material/Typography";
 export default function HomePage() {
   const dispatch = useDispatch();
   const events = useSelector(selectAllEvents);
@@ -16,23 +16,34 @@ export default function HomePage() {
   }, [dispatch]);
 
   return (
-    <Box
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        margin: "1em 10px",
-      }}
-    >
-      {events.map((event: Event) => {
-        return (
-          <EventCard
-            id={event.id}
-            title={event.title}
-            imageUrl={event.imageUrl}
-            description={event.description}
-          />
-        );
-      })}
-    </Box>
+    <div>
+      <Typography
+        gutterBottom
+        variant="h4"
+        component="div"
+        style={{ margin: "2em" }}
+      >
+        Looking for something to do? find an event and join!
+      </Typography>
+
+      <Box
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          margin: "1em 10px",
+        }}
+      >
+        {events.map((event: Event) => {
+          return (
+            <EventCard
+              id={event.id}
+              title={event.title}
+              imageUrl={event.imageUrl}
+              description={event.description}
+            />
+          );
+        })}
+      </Box>
+    </div>
   );
 }

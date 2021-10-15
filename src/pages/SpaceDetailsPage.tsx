@@ -6,9 +6,13 @@ import { Button } from "@material-ui/core";
 import EventCard from "../components/event/EventCard";
 import { Event } from "../types/eventTypes";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { selectAppLoading } from "../store/appState/selectors";
 
 export default function SpaceDetailsPage() {
   const space = useSelector(selectSpace);
+
+  //useEffect(() => {}, [space]);
   return (
     <Box style={{ margin: "1em" }}>
       <div style={{ display: "flex", justifyContent: "space-between" }}>

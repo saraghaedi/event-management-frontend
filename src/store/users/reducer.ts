@@ -30,7 +30,7 @@ export default function reducer(state = initialState, action: AuthTypes) {
       return { ...state, ...action.payload };
     }
     case CREATE_NEW_SPACE: {
-      return { ...state, space: action.payload };
+      return { ...state, space: { ...action.payload, events: [] } };
     }
     default: {
       return state;

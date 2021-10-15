@@ -9,6 +9,7 @@ import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import Brightness2 from "@material-ui/icons/Brightness2";
 import Brightness7 from "@material-ui/icons/Brightness7";
+import { Button } from "@material-ui/core";
 import AuthModal from "../auth/AuthModal";
 import Logout from "../auth/Logout";
 import { selectUser } from "../../store/users/selectors";
@@ -25,6 +26,16 @@ const useStyles = makeStyles((theme) => ({
   },
   darkButton: {
     marginLeft: "2vw",
+  },
+  btn: {
+    // marginLeft: "1vw",
+    fontWeight: "bold",
+    color: "#aa0d00",
+    backgroundColor: "#ffffff",
+    "&:hover": {
+      color: "#000000",
+      backgroundColor: "#ffa000",
+    },
   },
 }));
 
@@ -71,16 +82,7 @@ export default function ButtonAppBar(props: any) {
             width="100%"
             marginX={4}
           >
-            <Link style={{ color: "white", textDecoration: "none" }} to="/">
-              Home
-            </Link>
-            <Link
-              style={{ color: "white", textDecoration: "none" }}
-              to="/mySpace"
-            >
-              My Space
-            </Link>
-            <Box>
+            {/* <Box>
               <IconButton
                 component={Link}
                 to="/"
@@ -89,7 +91,16 @@ export default function ButtonAppBar(props: any) {
                 color="inherit"
                 aria-label="menu"
               ></IconButton>
-            </Box>
+            </Box> */}
+            <Link style={{ color: "white", textDecoration: "none" }} to="/">
+              <Button className={classes.btn}>Home </Button>
+            </Link>
+            <Link
+              style={{ color: "white", textDecoration: "none" }}
+              to="/mySpace"
+            >
+              <Button className={classes.btn}>My Space</Button>
+            </Link>
             <Box display="flex" alignItems="center" justifyContent="flex-end">
               {user.token ? <Logout user={user} /> : <AuthModal />}
               {darkModeButton()}
