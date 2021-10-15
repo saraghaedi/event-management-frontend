@@ -1,4 +1,4 @@
-import { selectSpace } from "../store/users/selectors";
+import { selectSpaceId, selectSpace } from "../store/users/selectors";
 import { useSelector } from "react-redux";
 import Typography from "@material-ui/core/Typography";
 import Box from "@mui/material/Box";
@@ -7,12 +7,17 @@ import EventCard from "../components/event/EventCard";
 import { Event } from "../types/eventTypes";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { selectAppLoading } from "../store/appState/selectors";
+import { fetchSpaceById } from "../store/users/actions";
+import { useDispatch } from "react-redux";
 
 export default function SpaceDetailsPage() {
+  const dispatch = useDispatch();
+  const spaceId = useSelector(selectSpaceId);
   const space = useSelector(selectSpace);
 
-  //useEffect(() => {}, [space]);
+  useEffect(() => {
+    dispatch(fetchSpaceById(spaceId));
+  }, [dispatch, spaceId]);
   return (
     <Box style={{ margin: "1em" }}>
       <div style={{ display: "flex", justifyContent: "space-between" }}>

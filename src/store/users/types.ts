@@ -20,7 +20,11 @@ export type CreateSpaceAction = {
   type: string;
   payload: Space;
 };
+export type fetchSpaceByid = {
+  type: string;
+  payload: Space;
+};
 
 export type AuthTypes = fetchUser | tokenStillValid | logOut;
 
-export type UserActionTypes = AuthTypes | CreateSpaceAction;
+export type UserActionTypes = AuthTypes | CreateSpaceAction | fetchSpaceByid;

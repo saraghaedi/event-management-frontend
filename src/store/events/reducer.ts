@@ -18,6 +18,7 @@ const initialState: { all: Event[]; eventDetails: Event } = {
     capacity: null,
     is_online: null,
     location: null,
+    price: null,
   },
 };
 

@@ -11,7 +11,7 @@ import {
 import { CreateEventAction } from "./types";
 import { Event } from "../../types/eventTypes";
 import { fetchEvents, fetchEventByid } from "./types";
-import { selectSpaceId, selectToken } from "../users/selectors";
+import { selectToken } from "../users/selectors";
 
 export const FETCHED_EVENTS = "FETCHED_EVENTS";
 export const FETCHED_EVENT_BY_ID = "FETCHED_EVENT_BY_ID";
@@ -86,6 +86,7 @@ export const createEvent = (event: Event) => {
     end_date,
     is_online,
     location,
+    price,
   } = event;
   return async function thunk(dispatch: Dispatch, getState: GetState) {
     const token = selectToken(getState());
@@ -102,6 +103,7 @@ export const createEvent = (event: Event) => {
           end_date,
           is_online,
           location,
+          price,
         },
         {
           headers: { Authorization: `Bearer ${token}` },

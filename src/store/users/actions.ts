@@ -1,6 +1,6 @@
 import { User, Credentials, SignupData } from "../../types/userTypes";
 import { Space } from "../../types/spaceTypes";
-import { AuthTypes, CreateSpaceAction } from "./types";
+import { AuthTypes, CreateSpaceAction, fetchSpaceByid } from "./types";
 import axios from "axios";
 import { Dispatch } from "redux";
 import { GetState } from "../types";
@@ -18,6 +18,7 @@ export const LOG_OUT = "LOG_OUT";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const TOKEN_STILL_VALID = "TOKEN_STILL_VALID";
 export const CREATE_NEW_SPACE = "CREATE_NEW_SPACE";
+export const FETCHED_SPACE_BY_ID = "FETCHED_SPACE_BY_ID";
 
 export const logOut = (): AuthTypes => ({ type: LOG_OUT, payload: null });
 
@@ -33,6 +34,11 @@ export const tokenStillValid = (user: User): AuthTypes => ({
 
 export const createSpaceAction = (space: Space): CreateSpaceAction => ({
   type: CREATE_NEW_SPACE,
+  payload: space,
+});
+
+export const fetchedSpaceById = (space: Space): fetchSpaceByid => ({
+  type: FETCHED_SPACE_BY_ID,
   payload: space,
 });
 
@@ -135,6 +141,28 @@ export const createSpace = (space: Space) => {
       );
 
       dispatch(createSpaceAction(response.data));
+      dispatch(
+        // @ts-ignore
+        showMessageWithTimeout("success", false, "Welcome Back!", 4000)
+      );
+      dispatch(appDoneLoading());
+    } catch (error: any) {
+      if (error.response) {
+        dispatch(setMessage("error", true, error.message));
+      } else {
+        dispatch(setMessage("error", true, error.message));
+      }
+      dispatch(appDoneLoading());
+    }
+  };
+};
+
+export const fetchSpaceById = (id: number) => {
+  return async (dispatch: Dispatch, getState: GetState) => {
+    dispatch(appLoading());
+    try {
+      const response: any = await axios.get(`${apiUrl}/spaces/${id}`);
+      dispatch(fetchedSpaceById(response.data));
       dispatch(
         // @ts-ignore
         showMessageWithTimeout("success", false, "Welcome Back!", 4000)

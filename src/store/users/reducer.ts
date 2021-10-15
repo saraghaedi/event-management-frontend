@@ -3,6 +3,7 @@ import {
   LOGIN_SUCCESS,
   TOKEN_STILL_VALID,
   CREATE_NEW_SPACE,
+  FETCHED_SPACE_BY_ID,
 } from "./actions";
 import { User } from "../../types/userTypes";
 import { AuthTypes } from "../users/types";
@@ -31,6 +32,9 @@ export default function reducer(state = initialState, action: AuthTypes) {
     }
     case CREATE_NEW_SPACE: {
       return { ...state, space: { ...action.payload, events: [] } };
+    }
+    case FETCHED_SPACE_BY_ID: {
+      return { ...state, space: action.payload };
     }
     default: {
       return state;

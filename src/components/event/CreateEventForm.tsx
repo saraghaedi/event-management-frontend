@@ -1,5 +1,5 @@
 import TextField from "@mui/material/TextField";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import Button from "@mui/material/Button";
 import { Event } from "../../types/eventTypes";
@@ -13,10 +13,13 @@ import DateTimePicker from "@mui/lab/DateTimePicker";
 import DateAdapter from "@mui/lab/AdapterMoment";
 import { createEvent } from "../../store/events/actions";
 import { useHistory } from "react-router-dom";
+import { selectSpaceId } from "../../store/users/selectors";
+import { fetchSpaceById } from "../../store/users/actions";
 
 export default function CreateEventForm() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const spaceId = useSelector(selectSpaceId);
   const initialState = {
     id: 0,
     title: "",
@@ -27,11 +30,14 @@ export default function CreateEventForm() {
     capacity: 0,
     is_online: true,
     location: "",
+    price: 0,
   };
   const [event, setEvent] = useState<Event>(initialState);
   function submitForm(e: React.SyntheticEvent) {
     e.preventDefault();
     dispatch(createEvent(event));
+    console.log("Space id is ", spaceId);
+    dispatch(fetchSpaceById(spaceId));
     setEvent(initialState);
     history.push(`/mySpace`);
   }
@@ -163,6 +169,19 @@ export default function CreateEventForm() {
             location: e.target.value,
           })
         }
+      />
+      <TextField
+        style={{ margin: "1em 0" }}
+        id="price"
+        value={event.price}
+        onChange={(e) =>
+          setEvent({
+            ...event,
+            price: parseInt(e.target.value),
+          })
+        }
+        label="price"
+        type="number"
       />
       <Button variant="contained" color="primary" onClick={submitForm}>
         Submit

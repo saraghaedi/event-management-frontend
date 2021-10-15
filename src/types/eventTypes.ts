@@ -8,4 +8,5 @@ export type Event = {
   capacity: number | null;
   is_online: boolean | null;
   location: string | null;
+  price: number | null;
 };
