@@ -8,7 +8,7 @@ import {
   appDoneLoading,
   appLoading,
 } from "../appState/actions";
-import { CreateEventAction } from "./types";
+import { CreateEventAction, BuyTicketAction } from "./types";
 import { Event } from "../../types/eventTypes";
 import { fetchEvents, fetchEventByid } from "./types";
 import { selectToken } from "../users/selectors";
@@ -16,6 +16,7 @@ import { selectToken } from "../users/selectors";
 export const FETCHED_EVENTS = "FETCHED_EVENTS";
 export const FETCHED_EVENT_BY_ID = "FETCHED_EVENT_BY_ID";
 export const CREATE_NEW_EVENT = "CREATE_NEW_EVENT";
+export const BUY_TICKET_ACTION = "BUY_TICKET_ACTION";
 
 export const fetchedEvents = (events: Event[]): fetchEvents => ({
   type: FETCHED_EVENTS,
@@ -29,6 +30,11 @@ export const fetchedEventById = (events: Event): fetchEventByid => ({
 
 export const createEventAction = (event: Event): CreateEventAction => ({
   type: CREATE_NEW_EVENT,
+  payload: event,
+});
+
+export const buyTicketAction = (event: Event): BuyTicketAction => ({
+  type: BUY_TICKET_ACTION,
   payload: event,
 });
 
@@ -110,6 +116,37 @@ export const createEvent = (event: Event) => {
         }
       );
       dispatch(createEventAction(response.data));
+      dispatch(
+        // @ts-ignore
+        showMessageWithTimeout("success", false, "Welcome Back!", 4000)
+      );
+      dispatch(appDoneLoading());
+    } catch (error: any) {
+      if (error.response) {
+        dispatch(setMessage("error", true, error.message));
+      } else {
+        dispatch(setMessage("error", true, error.message));
+      }
+      dispatch(appDoneLoading());
+    }
+  };
+};
+
+export const buyTicket = (id: string, amount: number) => {
+  return async (dispatch: Dispatch, getState: GetState) => {
+    dispatch(appLoading());
+    const token = selectToken(getState());
+    try {
+      const response: any = await axios.put(
+        `${apiUrl}/events/${id}/buyTicket`,
+        {
+          amount,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      dispatch(buyTicketAction(response.data));
       dispatch(
         // @ts-ignore
         showMessageWithTimeout("success", false, "Welcome Back!", 4000)

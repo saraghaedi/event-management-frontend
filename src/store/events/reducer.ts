@@ -4,6 +4,7 @@ import {
   FETCHED_EVENTS,
   FETCHED_EVENT_BY_ID,
   CREATE_NEW_EVENT,
+  BUY_TICKET_ACTION,
 } from "./actions";
 
 const initialState: { all: Event[]; eventDetails: Event } = {
@@ -40,6 +41,12 @@ export default function reducer(state = initialState, action: EventActions) {
       return {
         ...state,
         all: [...state.all, action.payload],
+      };
+    }
+    case BUY_TICKET_ACTION: {
+      return {
+        ...state,
+        eventDetails: action.payload,
       };
     }
     default: {

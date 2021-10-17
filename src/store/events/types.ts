@@ -15,4 +15,13 @@ export type CreateEventAction = {
   payload: Event;
 };
 
-export type EventActions = fetchEvents | fetchEventByid | CreateEventAction;
+export type BuyTicketAction = {
+  type: string;
+  payload: Event;
+};
+
+export type EventActions =
+  | fetchEvents
+  | fetchEventByid
+  | CreateEventAction
+  | BuyTicketAction;
