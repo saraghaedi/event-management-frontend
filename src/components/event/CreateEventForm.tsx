@@ -19,7 +19,7 @@ import { fetchSpaceById } from "../../store/users/actions";
 export default function CreateEventForm() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const spaceId = useSelector(selectSpaceId);
+
   const initialState = {
     id: 0,
     title: "",
@@ -28,16 +28,15 @@ export default function CreateEventForm() {
     start_date: new Date(),
     end_date: new Date(),
     capacity: 0,
-    is_online: true,
+    is_online: false,
     location: "",
     price: 0,
   };
   const [event, setEvent] = useState<Event>(initialState);
+
   function submitForm(e: React.SyntheticEvent) {
     e.preventDefault();
     dispatch(createEvent(event));
-    console.log("Space id is ", spaceId);
-    dispatch(fetchSpaceById(spaceId));
     setEvent(initialState);
     history.push(`/mySpace`);
   }
@@ -145,13 +144,13 @@ export default function CreateEventForm() {
         <FormControlLabel
           control={
             <Checkbox
-              defaultChecked
-              onChange={() =>
+              checked={event.is_online!}
+              onChange={() => {
                 setEvent({
                   ...event,
                   is_online: !event.is_online,
-                })
-              }
+                });
+              }}
             />
           }
           label="Online Event"

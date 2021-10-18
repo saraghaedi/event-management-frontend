@@ -101,6 +101,12 @@ export default function ButtonAppBar(props: any) {
             >
               <Button className={classes.btn}>My Space</Button>
             </Link>
+            <Link
+              style={{ color: "white", textDecoration: "none" }}
+              to="/myTickets"
+            >
+              <Button className={classes.btn}>My tickets</Button>
+            </Link>
             <Box display="flex" alignItems="center" justifyContent="flex-end">
               {user.token ? <Logout user={user} /> : <AuthModal />}
               {darkModeButton()}

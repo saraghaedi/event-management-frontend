@@ -1,4 +1,5 @@
 import { Event } from "../../types/eventTypes";
+import { UserEvents } from "../../types/userTypes";
 
 export type fetchEvents = {
   type: string;
@@ -18,6 +19,11 @@ export type CreateEventAction = {
 export type BuyTicketAction = {
   type: string;
   payload: Event;
+};
+
+export type AddUserEvent = {
+  type: string;
+  payload: UserEvents;
 };
 
 export type EventActions =

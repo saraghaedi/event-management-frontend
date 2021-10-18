@@ -2,21 +2,24 @@ import axios from "axios";
 import { Dispatch } from "redux";
 import { GetState } from "../types";
 import { apiUrl } from "../../config/constants";
+
 import {
   showMessageWithTimeout,
   setMessage,
   appDoneLoading,
   appLoading,
 } from "../appState/actions";
-import { CreateEventAction, BuyTicketAction } from "./types";
+import { CreateEventAction, BuyTicketAction, AddUserEvent } from "./types";
 import { Event } from "../../types/eventTypes";
 import { fetchEvents, fetchEventByid } from "./types";
 import { selectToken } from "../users/selectors";
+import { UserEvents } from "../../types/userTypes";
 
 export const FETCHED_EVENTS = "FETCHED_EVENTS";
 export const FETCHED_EVENT_BY_ID = "FETCHED_EVENT_BY_ID";
 export const CREATE_NEW_EVENT = "CREATE_NEW_EVENT";
-export const BUY_TICKET_ACTION = "BUY_TICKET_ACTION";
+export const UPDATE_EVENT_DETAILS = "UPDATE_EVENT_DETAILS";
+export const ADD_USER_EVENT = "ADD_USER_EVENT";
 
 export const fetchedEvents = (events: Event[]): fetchEvents => ({
   type: FETCHED_EVENTS,
@@ -34,8 +37,13 @@ export const createEventAction = (event: Event): CreateEventAction => ({
 });
 
 export const buyTicketAction = (event: Event): BuyTicketAction => ({
-  type: BUY_TICKET_ACTION,
+  type: UPDATE_EVENT_DETAILS,
   payload: event,
+});
+
+export const addEventToUserEvents = (userEvent: UserEvents): AddUserEvent => ({
+  type: ADD_USER_EVENT,
+  payload: userEvent,
 });
 
 export const fetchAllEvents = () => {
@@ -96,6 +104,7 @@ export const createEvent = (event: Event) => {
   } = event;
   return async function thunk(dispatch: Dispatch, getState: GetState) {
     const token = selectToken(getState());
+
     try {
       dispatch(appLoading());
       const response: any = await axios.post(
@@ -115,7 +124,8 @@ export const createEvent = (event: Event) => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      dispatch(createEventAction(response.data));
+      dispatch(createEventAction(response.data)); // new event.
+
       dispatch(
         // @ts-ignore
         showMessageWithTimeout("success", false, "Welcome Back!", 4000)
@@ -146,7 +156,10 @@ export const buyTicket = (id: string, amount: number) => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      dispatch(buyTicketAction(response.data));
+      dispatch(buyTicketAction(response.data.event)); // Update event
+      // new action to add userAttend
+      console.log("What am i getting back", response.data.userAttend);
+      dispatch(addEventToUserEvents(response.data.userAttend));
       dispatch(
         // @ts-ignore
         showMessageWithTimeout("success", false, "Welcome Back!", 4000)

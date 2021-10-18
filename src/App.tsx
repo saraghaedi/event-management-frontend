@@ -7,6 +7,7 @@ import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/users/actions";
 import EventDetailsPage from "./pages/EventDetailPage";
 import CreateEventForm from "./components/event/CreateEventForm";
+import MyTicketsPage from "./pages/MyTicketsPage";
 
 import HomePage from "./pages/HomePage";
 import MySpace from "./pages/MySpace";
@@ -28,6 +29,7 @@ function App() {
         <Route exact path="/events/:id" component={EventDetailsPage} />
         <Route exact path="/:spaceId/newEvent" component={CreateEventForm} />
         <Route exact path="/mySpace" component={MySpace} />
+        <Route exact path="/myTickets" component={MyTicketsPage} />
         <Route exact path="/" component={HomePage} />
       </Switch>
     </div>
