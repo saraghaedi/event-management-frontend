@@ -26,7 +26,7 @@ export default function SpaceDetailsPage() {
         </Typography>
         {space.logo_url ? (
           <img
-            style={{ width: "20%" }}
+            style={{ width: "15%" }}
             src={space.logo_url}
             alt={space.title}
           />

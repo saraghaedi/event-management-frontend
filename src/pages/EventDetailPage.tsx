@@ -64,19 +64,32 @@ export default function EventDetailsPage() {
   }, [dispatch, id]);
 
   return (
-    <Box style={{ margin: "1em" }}>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <Typography variant="h2" component="div" gutterBottom>
-          {event.title}
-        </Typography>
-      </div>
-      {event.imageUrl ? (
-        <img style={{ width: "50%" }} src={event.imageUrl} alt="eventImages" />
-      ) : null}
-      <Typography component="p" style={{ margin: "1em 0" }}>
-        {event?.description}
+    <Box
+      margin="1em auto"
+      width="80%"
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      border="1px solid black"
+    >
+      <Typography variant="h3" component="div" gutterBottom margin="1em 0">
+        {event.title}
       </Typography>
-      <Box display="flex" justifyContent="space-evenly">
+
+      <Box display="flex" justifyContent="space-between" margin="1em 1em">
+        {event.imageUrl ? (
+          <img
+            style={{ width: "40%", borderRadius: "20%" }}
+            src={event.imageUrl}
+            alt="eventImages"
+          />
+        ) : null}
+        <Typography component="p" style={{ margin: "1em 2em" }}>
+          {event?.description}
+        </Typography>
+      </Box>
+      <Box display="flex" justifyContent="space-evenly" marginBottom="1em">
         <div
           style={{
             display: "flex",
@@ -86,6 +99,7 @@ export default function EventDetailsPage() {
             borderRadius: "10px",
             backgroundColor: "#3f51b5",
             padding: "1em",
+            margin: "0 1em",
           }}
         >
           <Typography
