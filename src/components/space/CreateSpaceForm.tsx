@@ -50,6 +50,7 @@ export default function CreateSpaceForm() {
         </Typography>
       </Box>
       <TextField
+        required
         id="outlined-textarea"
         label="Title"
         multiline
@@ -62,6 +63,7 @@ export default function CreateSpaceForm() {
         }
       />
       <TextField
+        required
         id="outlined-multiline-static"
         label="Description"
         style={{ margin: "1em 0" }}

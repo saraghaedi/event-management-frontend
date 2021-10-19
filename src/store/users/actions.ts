@@ -143,7 +143,12 @@ export const createSpace = (space: Space) => {
       dispatch(createSpaceAction(response.data));
       dispatch(
         // @ts-ignore
-        showMessageWithTimeout("success", false, "Welcome Back!", 4000)
+        showMessageWithTimeout(
+          "success",
+          false,
+          "Space created successfully",
+          4000
+        )
       );
       dispatch(appDoneLoading());
     } catch (error: any) {
@@ -163,10 +168,7 @@ export const fetchSpaceById = (id: number) => {
     try {
       const response: any = await axios.get(`${apiUrl}/spaces/${id}`);
       dispatch(fetchedSpaceById(response.data));
-      dispatch(
-        // @ts-ignore
-        showMessageWithTimeout("success", false, "Welcome Back!", 4000)
-      );
+
       dispatch(appDoneLoading());
     } catch (error: any) {
       if (error.response) {

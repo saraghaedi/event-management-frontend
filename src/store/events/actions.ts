@@ -60,10 +60,7 @@ export const fetchAllEvents = () => {
     try {
       const response: any = await axios.get(`${apiUrl}/events`);
       dispatch(fetchedEvents(response.data));
-      dispatch(
-        // @ts-ignore
-        showMessageWithTimeout("success", false, "Welcome Back!", 4000)
-      );
+
       dispatch(appDoneLoading());
     } catch (error: any) {
       if (error.response) {
@@ -82,10 +79,6 @@ export const fetchEventsById = (id: string) => {
     try {
       const response: any = await axios.get(`${apiUrl}/events/${id}`);
       dispatch(fetchedEventById(response.data));
-      dispatch(
-        // @ts-ignore
-        showMessageWithTimeout("success", false, "Welcome Back!", 4000)
-      );
       dispatch(appDoneLoading());
     } catch (error: any) {
       if (error.response) {
@@ -133,10 +126,11 @@ export const createEvent = (event: Event) => {
         }
       );
       dispatch(createEventAction(response.data)); // new event.
-
-      dispatch(
-        // @ts-ignore
-        showMessageWithTimeout("success", false, "Welcome Back!", 4000)
+      showMessageWithTimeout(
+        "success",
+        false,
+        "Event created successfully",
+        4000
       );
       dispatch(appDoneLoading());
     } catch (error: any) {
@@ -165,13 +159,9 @@ export const buyTicket = (id: string, amount: number) => {
         }
       );
       dispatch(buyTicketAction(response.data.event)); // Update event
-      // new action to add userAttend
-      //console.log("What am i getting back", response.data.userAttend);
+
       dispatch(addEventToUserEvents(response.data.userAttend));
-      dispatch(
-        // @ts-ignore
-        showMessageWithTimeout("success", false, "Welcome Back!", 4000)
-      );
+
       dispatch(appDoneLoading());
     } catch (error: any) {
       if (error.response) {
@@ -196,10 +186,6 @@ export const fetchEventUserAttendance = (id: string) => {
         }
       );
       dispatch(fetchedEventUserAttendance(response.data.users));
-      dispatch(
-        // @ts-ignore
-        showMessageWithTimeout("success", false, "Welcome Back!", 4000)
-      );
       dispatch(appDoneLoading());
     } catch (error: any) {
       if (error.response) {

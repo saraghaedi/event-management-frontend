@@ -1,4 +1,3 @@
-import React from "react";
 import { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import NavBar from "./components/navigation/NavBar";
@@ -8,6 +7,7 @@ import { getUserWithStoredToken } from "./store/users/actions";
 import EventDetailsPage from "./pages/EventDetailPage";
 import CreateEventForm from "./components/event/CreateEventForm";
 import MyTicketsPage from "./pages/MyTicketsPage";
+import MessageBox from "./components/general/MessageBox";
 
 import HomePage from "./pages/HomePage";
 import MySpace from "./pages/MySpace";
@@ -23,6 +23,7 @@ function App() {
   return (
     <div className="App">
       <NavBar />
+      <MessageBox />
       {/* fix this part later- use a component to show loading */}
       {isLoading ? "loading" : null}
       <Switch>

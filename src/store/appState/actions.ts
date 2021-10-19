@@ -7,6 +7,7 @@ import {
   SET_MESSAGE,
   CLEAR_MESSAGE,
 } from "./types";
+import { AlertColor } from "@mui/material";
 
 export const appLoading = (): AppStateActionTypes => ({ type: APP_LOADING });
 export const appDoneLoading = (): AppStateActionTypes => ({
@@ -17,7 +18,7 @@ export const clearMessage = (): AppStateActionTypes => ({
 });
 
 export const setMessage = (
-  variant: string,
+  variant: AlertColor,
   dismissable: boolean,
   text: string
 ): AppStateActionTypes => {
@@ -32,7 +33,7 @@ export const setMessage = (
 };
 
 export const showMessageWithTimeout = (
-  variant: string,
+  variant: AlertColor,
   dismissable: boolean,
   text: string,
   timeOutMilliSeconds: number

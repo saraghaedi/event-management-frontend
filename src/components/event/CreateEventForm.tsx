@@ -60,6 +60,7 @@ export default function CreateEventForm() {
         fill this form and click on submit!
       </Typography>
       <TextField
+        required
         id="outlined-textarea"
         label="Title"
         multiline
@@ -72,6 +73,7 @@ export default function CreateEventForm() {
         }
       />
       <TextField
+        required
         id="outlined-multiline-static"
         label="Description"
         style={{ margin: "1em 0" }}
@@ -127,6 +129,7 @@ export default function CreateEventForm() {
       </LocalizationProvider>
 
       <TextField
+        required
         style={{ margin: "1em 0" }}
         id="Capacity"
         value={event.capacity}
@@ -156,6 +159,7 @@ export default function CreateEventForm() {
         />
       </FormGroup>
       <TextField
+        required
         style={{ margin: "1em 0" }}
         id="outlined-textarea"
         label="Location"
@@ -169,6 +173,7 @@ export default function CreateEventForm() {
         }
       />
       <TextField
+        required
         style={{ margin: "1em 0" }}
         id="price"
         value={event.price}

@@ -1,10 +1,12 @@
+import { AlertColor } from "@mui/material";
+
 export type AppState = {
   loading: Boolean;
   message: Message | null;
 };
 
 export type Message = {
-  variant: string;
+  variant: AlertColor;
   dismissable: boolean;
   text: string;
 };
