@@ -8,7 +8,16 @@ const moment = require("moment");
 
 export default function TicketCard(props: any) {
   return (
-    <div style={{ border: "1px solid black", margin: "1em 0" }}>
+    <div
+      style={{
+        margin: "1em 0",
+        border: "solid 1px white",
+        borderRadius: "10px",
+        backgroundColor: "white",
+        boxShadow: "10px 10px 5px",
+        width: "30%",
+      }}
+    >
       <Box padding="1em">
         <Typography variant="body2" color="text.secondary">
           event name

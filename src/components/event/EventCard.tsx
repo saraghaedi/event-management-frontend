@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 export default function EventCard(props: any) {
   return (
-    <Card sx={{ maxWidth: 345 }} style={{ margin: "1em" }}>
+    <Card sx={{ maxWidth: 345, minWidth: 345 }} style={{ margin: "1em" }}>
       <CardActionArea>
         <CardMedia
           component="img"

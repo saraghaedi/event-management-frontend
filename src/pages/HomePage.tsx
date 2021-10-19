@@ -16,12 +16,22 @@ export default function HomePage() {
   }, [dispatch]);
 
   return (
-    <div>
+    <Box
+      margin="1em auto"
+      width="90%"
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      border="1px solid #d1d1d1"
+      borderRadius="1%"
+      style={{ backgroundColor: "#3f51b5", boxShadow: "10px 10px 5px grey" }}
+    >
       <Typography
         gutterBottom
         variant="h4"
         component="div"
-        style={{ margin: "2em" }}
+        style={{ margin: "2em", color: "white" }}
       >
         Looking for something to do? find an event and join!
       </Typography>
@@ -44,6 +54,6 @@ export default function HomePage() {
           );
         })}
       </Box>
-    </div>
+    </Box>
   );
 }

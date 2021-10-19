@@ -158,7 +158,7 @@ export const buyTicket = (id: string, amount: number) => {
       );
       dispatch(buyTicketAction(response.data.event)); // Update event
       // new action to add userAttend
-      console.log("What am i getting back", response.data.userAttend);
+      //console.log("What am i getting back", response.data.userAttend);
       dispatch(addEventToUserEvents(response.data.userAttend));
       dispatch(
         // @ts-ignore

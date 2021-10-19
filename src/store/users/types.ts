@@ -1,6 +1,6 @@
 import { User } from "../../types/userTypes";
 import { Space } from "../../types/spaceTypes";
-import { BuyTicketAction, AddUserEvent } from "../events/types";
+import { AddUserEvent, CreateEventAction } from "../events/types";
 
 export type logOut = {
   type: string;
@@ -26,10 +26,11 @@ export type fetchSpaceByid = {
   payload: Space;
 };
 
-export type AuthTypes = fetchUser | tokenStillValid | logOut | AddUserEvent;
+export type AuthTypes = fetchUser | tokenStillValid | logOut;
 
 export type UserActionTypes =
   | AuthTypes
   | CreateSpaceAction
   | fetchSpaceByid
-  | AddUserEvent;
+  | AddUserEvent
+  | CreateEventAction;

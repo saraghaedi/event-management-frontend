@@ -66,47 +66,55 @@ export default function EventDetailsPage() {
   return (
     <Box
       margin="1em auto"
-      width="80%"
+      width="90%"
       display="flex"
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
-      border="1px solid black"
+      border="1px solid #d1d1d1"
+      borderRadius="1%"
+      style={{ backgroundColor: "#3f51b5", boxShadow: "10px 10px 5px grey" }}
     >
-      <Typography variant="h3" component="div" gutterBottom margin="1em 0">
+      <Typography
+        variant="h3"
+        component="div"
+        gutterBottom
+        margin="1em 0"
+        style={{ color: "white" }}
+      >
         {event.title}
       </Typography>
 
-      <Box display="flex" justifyContent="space-between" margin="1em 1em">
-        {event.imageUrl ? (
-          <img
-            style={{ width: "40%", borderRadius: "20%" }}
-            src={event.imageUrl}
-            alt="eventImages"
-          />
-        ) : null}
-        <Typography component="p" style={{ margin: "1em 2em" }}>
-          {event?.description}
-        </Typography>
-      </Box>
+      {event.imageUrl ? (
+        <img
+          style={{ width: "30%", borderRadius: "10%" }}
+          src={event.imageUrl}
+          alt="eventImages"
+        />
+      ) : null}
+      <Typography component="p" style={{ margin: "1em 2em", color: "white" }}>
+        {event?.description}
+      </Typography>
+
       <Box display="flex" justifyContent="space-evenly" marginBottom="1em">
         <div
           style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            border: "solid 1px #3f51b5",
+            border: "solid 1px white",
             borderRadius: "10px",
-            backgroundColor: "#3f51b5",
+            backgroundColor: "white",
             padding: "1em",
             margin: "0 1em",
+            boxShadow: "10px 10px 5px",
           }}
         >
           <Typography
             variant="h5"
             component="div"
             gutterBottom
-            style={{ color: "white", padding: ".5em" }}
+            style={{ padding: ".5em" }}
           >
             Event Info
           </Typography>
@@ -114,7 +122,6 @@ export default function EventDetailsPage() {
             component="p"
             style={{
               margin: "1em 0",
-              color: "white",
             }}
           >
             Start Date:{" "}
@@ -124,7 +131,6 @@ export default function EventDetailsPage() {
             component="p"
             style={{
               margin: "1em 0",
-              color: "white",
             }}
           >
             End Date:{" "}
@@ -134,7 +140,6 @@ export default function EventDetailsPage() {
             component="p"
             style={{
               margin: "1em 0",
-              color: "white",
             }}
           >
             Capacity: {event.capacity}
@@ -145,7 +150,6 @@ export default function EventDetailsPage() {
               component="p"
               style={{
                 margin: "1em 0",
-                color: "white",
               }}
             >
               This is an online event
@@ -156,7 +160,6 @@ export default function EventDetailsPage() {
             component="p"
             style={{
               margin: "1em 0",
-              color: "white",
             }}
           >
             Location : {event.location}
@@ -167,8 +170,10 @@ export default function EventDetailsPage() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            border: "solid 1px #3f51b5",
+            border: "solid 1px white",
             borderRadius: "10px",
+            backgroundColor: "white",
+            boxShadow: "10px 10px 5px",
 
             padding: "1em",
           }}

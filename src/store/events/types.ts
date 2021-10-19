@@ -30,4 +30,5 @@ export type EventActions =
   | fetchEvents
   | fetchEventByid
   | CreateEventAction
-  | BuyTicketAction;
+  | BuyTicketAction
+  | AddUserEvent;

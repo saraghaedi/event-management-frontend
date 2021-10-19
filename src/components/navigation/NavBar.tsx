@@ -6,9 +6,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Box from "@material-ui/core/Box";
 import Paper from "@material-ui/core/Paper";
-import IconButton from "@material-ui/core/IconButton";
-import Brightness2 from "@material-ui/icons/Brightness2";
-import Brightness7 from "@material-ui/icons/Brightness7";
+
 import { Button } from "@material-ui/core";
 import AuthModal from "../auth/AuthModal";
 import Logout from "../auth/Logout";
@@ -23,9 +21,6 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-  },
-  darkButton: {
-    marginLeft: "2vw",
   },
   btn: {
     // marginLeft: "1vw",
@@ -42,34 +37,6 @@ const useStyles = makeStyles((theme) => ({
 export default function ButtonAppBar(props: any) {
   const user = useSelector(selectUser);
   const classes = useStyles();
-
-  function darkModeButton() {
-    if (props.darkMode) {
-      return (
-        <IconButton
-          onClick={(e) => props.set_darkMode(false)}
-          className={classes.menuButton}
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-        >
-          <Brightness7 fontSize="large" />
-        </IconButton>
-      );
-    } else {
-      return (
-        <IconButton
-          onClick={(e) => props.set_darkMode(true)}
-          className={classes.menuButton}
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-        >
-          <Brightness2 fontSize="large" />
-        </IconButton>
-      );
-    }
-  }
 
   return (
     <Paper variant="elevation" color="primary">
@@ -109,7 +76,6 @@ export default function ButtonAppBar(props: any) {
             </Link>
             <Box display="flex" alignItems="center" justifyContent="flex-end">
               {user.token ? <Logout user={user} /> : <AuthModal />}
-              {darkModeButton()}
             </Box>
           </Box>
         </Toolbar>
