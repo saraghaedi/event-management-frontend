@@ -1,13 +1,18 @@
-import { Event } from "../../types/eventTypes";
+import { Event, EventUser } from "../../types/eventTypes";
 import { EventActions } from "./types";
 import {
   FETCHED_EVENTS,
   FETCHED_EVENT_BY_ID,
   CREATE_NEW_EVENT,
   UPDATE_EVENT_DETAILS,
+  EVENT_USER_ATTENDANCE,
 } from "./actions";
 
-const initialState: { all: Event[]; eventDetails: Event } = {
+const initialState: {
+  all: Event[];
+  eventDetails: Event;
+  eventUsers: EventUser[];
+} = {
   all: [],
   eventDetails: {
     id: null,
@@ -20,7 +25,9 @@ const initialState: { all: Event[]; eventDetails: Event } = {
     is_online: null,
     location: null,
     price: null,
+    spaceId: null,
   },
+  eventUsers: [],
 };
 
 export default function reducer(state = initialState, action: EventActions) {
@@ -47,6 +54,12 @@ export default function reducer(state = initialState, action: EventActions) {
       return {
         ...state,
         eventDetails: action.payload,
+      };
+    }
+    case EVENT_USER_ATTENDANCE: {
+      return {
+        ...state,
+        eventUsers: action.payload,
       };
     }
     default: {

@@ -13,8 +13,6 @@ import DateTimePicker from "@mui/lab/DateTimePicker";
 import DateAdapter from "@mui/lab/AdapterMoment";
 import { createEvent } from "../../store/events/actions";
 import { useHistory } from "react-router-dom";
-import { selectSpaceId } from "../../store/users/selectors";
-import { fetchSpaceById } from "../../store/users/actions";
 
 export default function CreateEventForm() {
   const dispatch = useDispatch();
@@ -31,6 +29,7 @@ export default function CreateEventForm() {
     is_online: false,
     location: "",
     price: 0,
+    spaceId: 0,
   };
   const [event, setEvent] = useState<Event>(initialState);
 

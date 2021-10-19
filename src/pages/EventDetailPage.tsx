@@ -7,11 +7,13 @@ import { fetchEventsById } from "../store/events/actions";
 import { selectEventdetails } from "../store/events/selectors";
 import { useState } from "react";
 import { buyTicket } from "../store/events/actions";
-import { selectToken } from "../store/users/selectors";
+import { selectToken, selectSpaceId } from "../store/users/selectors";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import UserAttendanceTable from "../components/general/UserAttendanceTable";
+import { fetchEventUserAttendance } from "../store/events/actions";
 const moment = require("moment");
 
 const modalStyle = {
@@ -25,11 +27,6 @@ const modalStyle = {
   boxShadow: 24,
   p: 4,
 };
-
-// const btn_style = {
-//   margin: "2em auto",
-//   display: "flex",
-// };
 
 export default function EventDetailsPage() {
   type Params = {
@@ -46,6 +43,7 @@ export default function EventDetailsPage() {
   const event = useSelector(selectEventdetails);
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
+  const spaceId = useSelector(selectSpaceId);
 
   //modal
 
@@ -61,6 +59,7 @@ export default function EventDetailsPage() {
 
   useEffect(() => {
     dispatch(fetchEventsById(id));
+    dispatch(fetchEventUserAttendance(id));
   }, [dispatch, id]);
 
   return (
@@ -91,7 +90,13 @@ export default function EventDetailsPage() {
           src={event.imageUrl}
           alt="eventImages"
         />
-      ) : null}
+      ) : (
+        <img
+          style={{ width: "30%", borderRadius: "10%" }}
+          src="https://cdn3.vectorstock.com/i/1000x1000/35/52/placeholder-rgb-color-icon-vector-32173552.jpg"
+          alt="eventImages"
+        />
+      )}
       <Typography component="p" style={{ margin: "1em 2em", color: "white" }}>
         {event?.description}
       </Typography>
@@ -264,6 +269,7 @@ export default function EventDetailsPage() {
             </div>
           )}
         </div>
+        {spaceId === event.spaceId ? <UserAttendanceTable /> : <></>}
       </Box>
     </Box>
   );

@@ -9,4 +9,10 @@ export type Event = {
   is_online: boolean | null;
   location: string | null;
   price: number | null;
+  spaceId: number | null;
+};
+
+export type EventUser = {
+  name: string;
+  email: string;
 };

@@ -10,8 +10,8 @@ import {
   appLoading,
 } from "../appState/actions";
 import { CreateEventAction, BuyTicketAction, AddUserEvent } from "./types";
-import { Event } from "../../types/eventTypes";
-import { fetchEvents, fetchEventByid } from "./types";
+import { Event, EventUser } from "../../types/eventTypes";
+import { fetchEvents, fetchEventByid, FetchEventUsers } from "./types";
 import { selectToken } from "../users/selectors";
 import { UserEvents } from "../../types/userTypes";
 
@@ -20,6 +20,7 @@ export const FETCHED_EVENT_BY_ID = "FETCHED_EVENT_BY_ID";
 export const CREATE_NEW_EVENT = "CREATE_NEW_EVENT";
 export const UPDATE_EVENT_DETAILS = "UPDATE_EVENT_DETAILS";
 export const ADD_USER_EVENT = "ADD_USER_EVENT";
+export const EVENT_USER_ATTENDANCE = "EVENT_USER_ATTENDANCE";
 
 export const fetchedEvents = (events: Event[]): fetchEvents => ({
   type: FETCHED_EVENTS,
@@ -34,6 +35,13 @@ export const fetchedEventById = (events: Event): fetchEventByid => ({
 export const createEventAction = (event: Event): CreateEventAction => ({
   type: CREATE_NEW_EVENT,
   payload: event,
+});
+
+export const fetchedEventUserAttendance = (
+  users: EventUser[]
+): FetchEventUsers => ({
+  type: EVENT_USER_ATTENDANCE,
+  payload: users,
 });
 
 export const buyTicketAction = (event: Event): BuyTicketAction => ({
@@ -160,6 +168,34 @@ export const buyTicket = (id: string, amount: number) => {
       // new action to add userAttend
       //console.log("What am i getting back", response.data.userAttend);
       dispatch(addEventToUserEvents(response.data.userAttend));
+      dispatch(
+        // @ts-ignore
+        showMessageWithTimeout("success", false, "Welcome Back!", 4000)
+      );
+      dispatch(appDoneLoading());
+    } catch (error: any) {
+      if (error.response) {
+        dispatch(setMessage("error", true, error.message));
+      } else {
+        dispatch(setMessage("error", true, error.message));
+      }
+      dispatch(appDoneLoading());
+    }
+  };
+};
+
+export const fetchEventUserAttendance = (id: string) => {
+  return async (dispatch: Dispatch, getState: GetState) => {
+    dispatch(appLoading());
+    const token = selectToken(getState());
+    try {
+      const response: any = await axios.get(
+        `${apiUrl}/events/${id}/attendance`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      dispatch(fetchedEventUserAttendance(response.data.users));
       dispatch(
         // @ts-ignore
         showMessageWithTimeout("success", false, "Welcome Back!", 4000)
