@@ -3,12 +3,7 @@ import { Dispatch } from "redux";
 import { GetState } from "../types";
 import { apiUrl } from "../../config/constants";
 
-import {
-  showMessageWithTimeout,
-  setMessage,
-  appDoneLoading,
-  appLoading,
-} from "../appState/actions";
+import { setMessage, appDoneLoading, appLoading } from "../appState/actions";
 import { CreateEventAction, BuyTicketAction, AddUserEvent } from "./types";
 import { Event, EventUser } from "../../types/eventTypes";
 import { fetchEvents, fetchEventByid, FetchEventUsers } from "./types";
