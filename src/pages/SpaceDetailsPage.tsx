@@ -92,6 +92,7 @@ export default function SpaceDetailsPage() {
         {space.events.map((event: Event) => {
           return (
             <EventCard
+              key={event.id}
               id={event.id}
               title={event.title}
               imageUrl={event.imageUrl}

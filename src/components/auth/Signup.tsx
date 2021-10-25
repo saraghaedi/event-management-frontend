@@ -36,7 +36,6 @@ export default function SingUp(props: any) {
 
   function submitForm(event: React.SyntheticEvent) {
     event.preventDefault();
-    console.log("signup", signUpcredentials);
     dispatch(signUp(signUpcredentials));
     handleClose();
     set_signUpcredentials(initialState);

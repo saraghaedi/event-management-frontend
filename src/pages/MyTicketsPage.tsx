@@ -9,7 +9,6 @@ import Typography from "@material-ui/core/Typography";
 export default function MyTicketsPage() {
   const userEvents = useSelector(selectUserEvents);
   const token = useSelector(selectToken);
-  userEvents?.map((ue) => console.log(ue.event?.title));
 
   return (
     <div>
@@ -52,6 +51,7 @@ export default function MyTicketsPage() {
           {userEvents?.map((userEvent) => {
             return (
               <TicketCard
+                key={userEvent.event.id}
                 id={userEvent.event.id}
                 title={userEvent.event.title}
                 start_date={userEvent.event.start_date}
