@@ -59,8 +59,10 @@ export default function EventDetailsPage() {
 
   useEffect(() => {
     dispatch(fetchEventsById(id));
-    dispatch(fetchEventUserAttendance(id));
-  }, [dispatch, id]);
+    if (token) {
+      dispatch(fetchEventUserAttendance(id));
+    }
+  }, [dispatch, id, token]);
 
   return (
     <Box
@@ -294,7 +296,7 @@ export default function EventDetailsPage() {
             </div>
           )}
         </div>
-        {spaceId === event.spaceId ? <UserAttendanceTable /> : <></>}
+        {token && spaceId === event.spaceId ? <UserAttendanceTable /> : <></>}
       </Box>
     </Box>
   );
