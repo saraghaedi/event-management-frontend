@@ -239,6 +239,7 @@ export default function EventDetailsPage() {
                 options={{
                   "client-id":
                     "AZuyRCHRciB_LH7YSK28AvXzZo_95VuPQwGk9PjSm0hhVJCf10Yvaz8DE-ujRcErC-PzJI9Scmj-h7yt",
+                  //"AfEBXy0ZUs6BAqpo8YmlAZdbCaD6A3iWGrckoiN-uivHdDB6-KDZ-1E8FazhkYt_GFT7bnJWdgeDb0XJ",
                   currency: "EUR",
                 }}
               >

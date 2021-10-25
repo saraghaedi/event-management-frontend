@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { createSpace } from "../../store/users/actions";
 import Typography from "@mui/material/Typography";
+import { showMessageWithTimeout } from "../../store/appState/actions";
 
 export default function CreateSpaceForm() {
   const dispatch = useDispatch();
@@ -20,9 +21,14 @@ export default function CreateSpaceForm() {
   const [space, setSpace] = useState<Space>(initialState);
   function submitForm(event: React.SyntheticEvent) {
     event.preventDefault();
-    dispatch(createSpace(space));
-
-    setSpace(initialState);
+    const { title, description } = space;
+    if (!title || !description) {
+      const message = "Please make sure to provide all necessary information";
+      dispatch(showMessageWithTimeout("error", true, message, 3000));
+    } else {
+      dispatch(createSpace(space));
+      setSpace(initialState);
+    }
   }
 
   return (

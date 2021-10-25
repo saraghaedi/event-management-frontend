@@ -13,6 +13,7 @@ import DateTimePicker from "@mui/lab/DateTimePicker";
 import DateAdapter from "@mui/lab/AdapterMoment";
 import { createEvent } from "../../store/events/actions";
 import { useHistory } from "react-router-dom";
+import { showMessageWithTimeout } from "../../store/appState/actions";
 
 export default function CreateEventForm() {
   const dispatch = useDispatch();
@@ -35,9 +36,31 @@ export default function CreateEventForm() {
 
   function submitForm(e: React.SyntheticEvent) {
     e.preventDefault();
-    dispatch(createEvent(event));
-    setEvent(initialState);
-    history.push(`/mySpace`);
+    const {
+      title,
+      description,
+      start_date,
+      end_date,
+      capacity,
+      location,
+      price,
+    } = event;
+    if (
+      !title ||
+      !description ||
+      !start_date ||
+      !end_date ||
+      !capacity ||
+      !location ||
+      !price
+    ) {
+      const message = "Please make sure to provide all necessary information";
+      dispatch(showMessageWithTimeout("error", true, message, 3000));
+    } else {
+      dispatch(createEvent(event));
+      setEvent(initialState);
+      history.push(`/mySpace`);
+    }
   }
 
   return (
