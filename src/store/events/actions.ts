@@ -126,16 +126,11 @@ export const createEvent = (event: Event) => {
         }
       );
       dispatch(createEventAction(response.data)); // new event.
-      showMessageWithTimeout(
-        "success",
-        false,
-        "Event created successfully",
-        4000
-      );
+
       dispatch(appDoneLoading());
     } catch (error: any) {
       if (error.response) {
-        dispatch(setMessage("error", true, error.message));
+        dispatch(setMessage("error", true, error.response.data.message));
       } else {
         dispatch(setMessage("error", true, error.message));
       }

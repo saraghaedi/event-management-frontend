@@ -14,6 +14,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import UserAttendanceTable from "../components/general/UserAttendanceTable";
 import { fetchEventUserAttendance } from "../store/events/actions";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 const moment = require("moment");
 
 const modalStyle = {
@@ -46,14 +47,13 @@ export default function EventDetailsPage() {
   const spaceId = useSelector(selectSpaceId);
 
   //modal
-
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  function submitForm(event: React.SyntheticEvent) {
-    event.preventDefault();
-
+  function handleSubmitOrder() {
+    console.log("I got here");
+    // e.preventDefault();
     dispatch(buyTicket(id, tickets.amount));
   }
 
@@ -235,17 +235,42 @@ export default function EventDetailsPage() {
             </div>
           ) : (
             <div>
-              <Button
-                variant="contained"
-                color="primary"
-                style={{ margin: "2em auto", display: "flex" }}
-                onClick={(e) => {
-                  submitForm(e);
-                  handleOpen();
+              <PayPalScriptProvider
+                options={{
+                  "client-id":
+                    "AZuyRCHRciB_LH7YSK28AvXzZo_95VuPQwGk9PjSm0hhVJCf10Yvaz8DE-ujRcErC-PzJI9Scmj-h7yt",
+                  //"AfEBXy0ZUs6BAqpo8YmlAZdbCaD6A3iWGrckoiN-uivHdDB6-KDZ-1E8FazhkYt_GFT7bnJWdgeDb0XJ",
+                  currency: "EUR",
                 }}
               >
-                BUY TICKET
-              </Button>
+                <PayPalButtons
+                  style={{
+                    layout: "horizontal",
+                    shape: "pill",
+                    color: "black",
+                    label: "pay",
+                    tagline: false,
+                    height: 50,
+                  }}
+                  // @ts-ignore
+                  onApprove={(event) => {
+                    handleSubmitOrder();
+                    handleOpen();
+                  }}
+                  createOrder={(data, actions) => {
+                    return actions.order.create({
+                      purchase_units: [
+                        {
+                          amount: {
+                            value: (event.price! * tickets.amount).toFixed(2),
+                          },
+                        },
+                      ],
+                    });
+                  }}
+                />
+              </PayPalScriptProvider>
+
               <Modal
                 open={open}
                 onClose={handleClose}
