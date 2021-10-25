@@ -9,7 +9,6 @@ import {
 import { CREATE_NEW_EVENT, ADD_USER_EVENT } from "../events/actions";
 
 import { User } from "../../types/userTypes";
-import { UserActionTypes } from "../users/types";
 
 const initialState: User = {
   id: null,

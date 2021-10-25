@@ -11,7 +11,10 @@ const initialState = {
   message: null,
 };
 
-export default (state = initialState, action: AppStateActionTypes) => {
+export default function reducer(
+  state = initialState,
+  action: AppStateActionTypes
+) {
   switch (action.type) {
     case APP_LOADING:
       return { ...state, loading: true };
@@ -28,4 +31,4 @@ export default (state = initialState, action: AppStateActionTypes) => {
     default:
       return state;
   }
-};
+}

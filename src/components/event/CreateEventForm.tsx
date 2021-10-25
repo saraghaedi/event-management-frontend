@@ -1,5 +1,5 @@
 import TextField from "@mui/material/TextField";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 import Button from "@mui/material/Button";
 import { Event } from "../../types/eventTypes";
