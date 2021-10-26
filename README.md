@@ -47,7 +47,7 @@ The main goal of this project is to gain experience developing a full-stack app.
 
 - [Kanban with user stories](https://github.com/users/saraghaedi/projects/1)
 - [UML](https://dbdiagram.io/d/61601331940c4c4eec8baab0)
-- [Wire frame] (https://wireframepro.mockflow.com/space/event-management)
+- [Wire frame](https://wireframepro.mockflow.com/space/event-management)
 
 ## Git workflow
 
