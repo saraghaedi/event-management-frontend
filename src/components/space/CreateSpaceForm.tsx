@@ -96,7 +96,11 @@ export default function CreateSpaceForm() {
           })
         }
       />
-      <Button variant="contained" color="primary" onClick={submitForm}>
+      <Button
+        variant="contained"
+        style={{ backgroundColor: "#1b4332", color: "white" }}
+        onClick={submitForm}
+      >
         Submit
       </Button>
     </div>
