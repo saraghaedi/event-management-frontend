@@ -30,7 +30,7 @@ export default function EventCard(props: any) {
       </CardActionArea>
       <CardActions>
         <Link to={`/events/${props.id}`} style={{ textDecoration: "none" }}>
-          <Button size="small" color="primary">
+          <Button size="small" style={{ color: "#1b4332" }}>
             More
           </Button>
         </Link>

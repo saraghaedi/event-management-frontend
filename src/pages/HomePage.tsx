@@ -51,7 +51,7 @@ export default function HomePage() {
       border="1px solid #d1d1d1"
       borderRadius="1%"
       style={{
-        backgroundColor: "#3f51b5",
+        backgroundColor: "#d8f3dc",
         boxShadow: "10px 10px 5px grey",
       }}
     >
@@ -59,7 +59,7 @@ export default function HomePage() {
         gutterBottom
         variant="h4"
         component="div"
-        style={{ margin: "2em", color: "white" }}
+        style={{ margin: "2em", color: "#081c15" }}
       >
         Looking for something to do? find an event and join!
       </Typography>
@@ -67,20 +67,25 @@ export default function HomePage() {
         <TextField
           id="filled-basic"
           label="search"
-          style={{ width: "60%" }}
+          style={{ width: "60%", backgroundColor: "#b7e4c7" }}
           value={text}
           onChange={(event) => setText(event.target.value)}
         />
+
         <Button
           variant="contained"
-          color="primary"
-          style={{ margin: "0 1em" }}
+          style={{
+            margin: "0 1em",
+            color: "#aa0d00",
+            backgroundColor: "white",
+            fontWeight: "bold",
+          }}
           onClick={search}
         >
           search
         </Button>
 
-        <FormControl style={{ width: "15%" }}>
+        <FormControl style={{ width: "15%", backgroundColor: "#b7e4c7" }}>
           <InputLabel id="demo-simple-select-label">Category</InputLabel>
           <Select
             labelId="demo-simple-select-label"

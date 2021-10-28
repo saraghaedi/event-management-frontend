@@ -74,14 +74,17 @@ export default function EventDetailsPage() {
       alignItems="center"
       border="1px solid #d1d1d1"
       borderRadius="1%"
-      style={{ backgroundColor: "#3f51b5", boxShadow: "10px 10px 5px grey" }}
+      style={{
+        backgroundColor: "rgb(183, 228, 199)",
+        boxShadow: "10px 10px 5px grey",
+      }}
     >
       <Typography
         variant="h3"
         component="div"
         gutterBottom
         margin="1em 0"
-        style={{ color: "white" }}
+        style={{ color: "rgb(8, 28, 21)" }}
       >
         {event.title}
       </Typography>
@@ -99,7 +102,10 @@ export default function EventDetailsPage() {
           alt="eventImages"
         />
       )}
-      <Typography component="p" style={{ margin: "1em 2em", color: "white" }}>
+      <Typography
+        component="p"
+        style={{ margin: "1em 2em", color: "rgb(8, 28, 21)" }}
+      >
         {event?.description}
       </Typography>
 

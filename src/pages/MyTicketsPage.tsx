@@ -44,7 +44,7 @@ export default function MyTicketsPage() {
           border="1px solid #d1d1d1"
           borderRadius="1%"
           style={{
-            backgroundColor: "#3f51b5",
+            backgroundColor: "#d8f3dc",
             boxShadow: "10px 10px 5px grey",
           }}
         >

@@ -23,7 +23,7 @@ export default function MySpace() {
           margin="1em"
         >
           <Typography variant="h2" component="div" gutterBottom>
-            organise your events in your own space!
+            Organise your events in your own space!
           </Typography>
           <Typography variant="h5" component="div" gutterBottom>
             You can have your own space to manage all your events! please login

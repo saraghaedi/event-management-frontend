@@ -13,7 +13,7 @@ export default function TicketCard(props: any) {
         margin: "1em 0",
         border: "solid 1px white",
         borderRadius: "10px",
-        backgroundColor: "white",
+        backgroundColor: "#74c69d",
         boxShadow: "10px 10px 5px",
         width: "30%",
       }}
@@ -47,8 +47,11 @@ export default function TicketCard(props: any) {
           >
             <Button
               variant="contained"
-              color="primary"
-              style={{ margin: "1em 0" }}
+              style={{
+                margin: "1em 0",
+                color: "#aa0d00",
+                backgroundColor: "white",
+              }}
             >
               {" "}
               go to event detail{" "}
