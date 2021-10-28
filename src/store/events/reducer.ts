@@ -6,12 +6,16 @@ import {
   CREATE_NEW_EVENT,
   UPDATE_EVENT_DETAILS,
   EVENT_USER_ATTENDANCE,
+  SEARCH_EVENTS,
+  FILTER_EVENTS,
 } from "./actions";
 
 const initialState: {
   all: Event[];
   eventDetails: Event;
   eventUsers: EventUser[];
+  searchedEvents: Event[];
+  filteredEvents: Event[];
 } = {
   all: [],
   eventDetails: {
@@ -26,8 +30,11 @@ const initialState: {
     location: null,
     price: null,
     spaceId: null,
+    categoryId: null,
   },
   eventUsers: [],
+  searchedEvents: [],
+  filteredEvents: [],
 };
 
 export default function reducer(state = initialState, action: EventActions) {
@@ -60,6 +67,20 @@ export default function reducer(state = initialState, action: EventActions) {
       return {
         ...state,
         eventUsers: action.payload,
+      };
+    }
+    case SEARCH_EVENTS: {
+      return {
+        ...state,
+        searchedEvents: action.payload,
+        filteredEvents: [],
+      };
+    }
+    case FILTER_EVENTS: {
+      return {
+        ...state,
+        filteredEvents: action.payload,
+        searchedEvents: [],
       };
     }
     default: {

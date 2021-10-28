@@ -37,10 +37,10 @@ const useStyles = makeStyles((theme) => ({
 export default function ButtonAppBar(props: any) {
   const user = useSelector(selectUser);
   const classes = useStyles();
-
+  // #40916c
   return (
     <Paper variant="elevation" color="primary">
-      <AppBar position="static">
+      <AppBar position="static" style={{ backgroundColor: "#1b4332" }}>
         <Toolbar>
           <Box
             display="flex"
@@ -49,28 +49,18 @@ export default function ButtonAppBar(props: any) {
             width="100%"
             marginX={4}
           >
-            {/* <Box>
-              <IconButton
-                component={Link}
-                to="/"
-                className={classes.menuButton}
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-              ></IconButton>
-            </Box> */}
             <Link style={{ color: "white", textDecoration: "none" }} to="/">
               <Button className={classes.btn}>Home </Button>
             </Link>
             <Link
               style={{ color: "white", textDecoration: "none" }}
-              to="/mySpace"
+              to="/my-space"
             >
               <Button className={classes.btn}>My Space</Button>
             </Link>
             <Link
               style={{ color: "white", textDecoration: "none" }}
-              to="/myTickets"
+              to="/my-tickets"
             >
               <Button className={classes.btn}>My tickets</Button>
             </Link>

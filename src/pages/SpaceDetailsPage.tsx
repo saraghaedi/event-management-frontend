@@ -43,7 +43,10 @@ export default function SpaceDetailsPage() {
       alignItems="center"
       border="1px solid #d1d1d1"
       borderRadius="1%"
-      style={{ backgroundColor: "#3f51b5", boxShadow: "10px 10px 5px grey" }}
+      style={{
+        backgroundColor: "#d8f3dc",
+        boxShadow: "10px 10px 5px grey",
+      }}
     >
       <div
         style={{
@@ -59,11 +62,14 @@ export default function SpaceDetailsPage() {
             variant="h2"
             component="div"
             gutterBottom
-            style={{ color: "white" }}
+            style={{ color: "rgb(8, 28, 21)" }}
           >
             {space.title}
           </Typography>
-          <Typography component="p" style={{ margin: "1em 0", color: "white" }}>
+          <Typography
+            component="p"
+            style={{ margin: "1em 0", color: "rgb(8, 28, 21)" }}
+          >
             {space?.description}
           </Typography>
         </Box>
@@ -77,7 +83,7 @@ export default function SpaceDetailsPage() {
       </div>
 
       <Link
-        to={`/${space.id}/newEvent`}
+        to={`/${space.id}/new-event`}
         style={{ textDecoration: "none", padding: "1em" }}
       >
         <Button className={classes.btn}>Create a new event</Button>

@@ -27,11 +27,11 @@ function App() {
       {/* fix this part later- use a component to show loading */}
       {isLoading ? "loading" : null}
       <Switch>
-        <Route exact path="/events/:id" component={EventDetailsPage} />
-        <Route exact path="/:spaceId/newEvent" component={CreateEventForm} />
-        <Route exact path="/mySpace" component={MySpace} />
-        <Route exact path="/myTickets" component={MyTicketsPage} />
-        <Route exact path="/" component={HomePage} />
+        <Route path="/events/:id" component={EventDetailsPage} />
+        <Route path="/:spaceId/new-event" component={CreateEventForm} />
+        <Route path="/my-space" component={MySpace} />
+        <Route path="/my-tickets" component={MyTicketsPage} />
+        <Route path="/" component={HomePage} />
       </Switch>
     </div>
   );
