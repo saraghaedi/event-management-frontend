@@ -269,7 +269,11 @@ export default function CreateEventForm() {
         label="price"
         type="number"
       />
-      <Button variant="contained" color="primary" onClick={submitForm}>
+      <Button
+        variant="contained"
+        style={{ backgroundColor: "#1b4332" }}
+        onClick={submitForm}
+      >
         Submit
       </Button>
     </div>
