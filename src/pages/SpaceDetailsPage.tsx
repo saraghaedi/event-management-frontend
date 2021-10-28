@@ -77,7 +77,7 @@ export default function SpaceDetailsPage() {
       </div>
 
       <Link
-        to={`/${space.id}/newEvent`}
+        to={`/${space.id}/new-event`}
         style={{ textDecoration: "none", padding: "1em" }}
       >
         <Button className={classes.btn}>Create a new event</Button>

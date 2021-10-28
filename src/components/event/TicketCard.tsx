@@ -26,7 +26,7 @@ export default function TicketCard(props: any) {
           {props.title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          date:
+          date
         </Typography>
         <Typography variant="body2" color="text.primary">
           start: {moment(props.start_date).format("MMMM Do YYYY, h:mm:ss a")}

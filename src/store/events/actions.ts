@@ -4,7 +4,12 @@ import { GetState } from "../types";
 import { apiUrl } from "../../config/constants";
 
 import { setMessage, appDoneLoading, appLoading } from "../appState/actions";
-import { CreateEventAction, BuyTicketAction, AddUserEvent } from "./types";
+import {
+  CreateEventAction,
+  BuyTicketAction,
+  AddUserEvent,
+  EventActions,
+} from "./types";
 import { Event, EventUser } from "../../types/eventTypes";
 import { fetchEvents, fetchEventByid, FetchEventUsers } from "./types";
 import { selectToken } from "../users/selectors";
@@ -16,6 +21,8 @@ export const CREATE_NEW_EVENT = "CREATE_NEW_EVENT";
 export const UPDATE_EVENT_DETAILS = "UPDATE_EVENT_DETAILS";
 export const ADD_USER_EVENT = "ADD_USER_EVENT";
 export const EVENT_USER_ATTENDANCE = "EVENT_USER_ATTENDANCE";
+export const SEARCH_EVENTS = "SEARCH_EVENTS";
+export const FILTER_EVENTS = "FILTER_EVENTS";
 
 export const fetchedEvents = (events: Event[]): fetchEvents => ({
   type: FETCHED_EVENTS,
@@ -47,6 +54,16 @@ export const buyTicketAction = (event: Event): BuyTicketAction => ({
 export const addEventToUserEvents = (userEvent: UserEvents): AddUserEvent => ({
   type: ADD_USER_EVENT,
   payload: userEvent,
+});
+
+export const searchedEvents = (events: Event[]): EventActions => ({
+  type: SEARCH_EVENTS,
+  payload: events,
+});
+
+export const filteredEvents = (events: Event[]): EventActions => ({
+  type: FILTER_EVENTS,
+  payload: events,
 });
 
 export const fetchAllEvents = () => {
@@ -97,6 +114,7 @@ export const createEvent = (event: Event) => {
     is_online,
     location,
     price,
+    categoryId,
   } = event;
   return async function thunk(dispatch: Dispatch, getState: GetState) {
     const token = selectToken(getState());
@@ -115,6 +133,7 @@ export const createEvent = (event: Event) => {
           is_online,
           location,
           price,
+          categoryId,
         },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -187,3 +206,41 @@ export const fetchEventUserAttendance = (id: string) => {
     }
   };
 };
+
+// search events by name or description
+export function searchEvents(text: string) {
+  return async function thunk(dispatch: Dispatch, getState: GetState) {
+    dispatch(appLoading());
+    try {
+      const response: any = await axios.get(`${apiUrl}/events/search/${text}`);
+      dispatch(searchedEvents(response.data));
+      dispatch(appDoneLoading());
+    } catch (error: any) {
+      if (error.response) {
+        dispatch(setMessage("error", true, error.message));
+      } else {
+        dispatch(setMessage("error", true, error.message));
+      }
+      dispatch(appDoneLoading());
+    }
+  };
+}
+
+//filter events by category
+export function filterEvents(id: number) {
+  return async function thunk(dispatch: Dispatch, getState: GetState) {
+    dispatch(appLoading());
+    try {
+      const response: any = await axios.get(`${apiUrl}/events/category/${id}`);
+      dispatch(filteredEvents(response.data[0].events));
+      dispatch(appDoneLoading());
+    } catch (error: any) {
+      if (error.response) {
+        dispatch(setMessage("error", true, error.message));
+      } else {
+        dispatch(setMessage("error", true, error.message));
+      }
+      dispatch(appDoneLoading());
+    }
+  };
+}

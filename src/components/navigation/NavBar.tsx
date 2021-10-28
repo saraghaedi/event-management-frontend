@@ -64,13 +64,13 @@ export default function ButtonAppBar(props: any) {
             </Link>
             <Link
               style={{ color: "white", textDecoration: "none" }}
-              to="/mySpace"
+              to="/my-space"
             >
               <Button className={classes.btn}>My Space</Button>
             </Link>
             <Link
               style={{ color: "white", textDecoration: "none" }}
-              to="/myTickets"
+              to="/my-tickets"
             >
               <Button className={classes.btn}>My tickets</Button>
             </Link>

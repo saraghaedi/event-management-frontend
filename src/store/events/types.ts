@@ -31,10 +31,21 @@ export type FetchEventUsers = {
   payload: EventUser[];
 };
 
+export type searchEvents = {
+  type: string;
+  payload: Event[];
+};
+export type FilterEvents = {
+  type: string;
+  payload: Event[];
+};
+
 export type EventActions =
   | fetchEvents
   | fetchEventByid
   | CreateEventAction
   | BuyTicketAction
   | AddUserEvent
-  | FetchEventUsers;
+  | FetchEventUsers
+  | searchEvents
+  | FilterEvents;

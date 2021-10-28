@@ -1,6 +1,6 @@
 import TextField from "@mui/material/TextField";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import { Event } from "../../types/eventTypes";
 import Typography from "@mui/material/Typography";
@@ -14,10 +14,22 @@ import DateAdapter from "@mui/lab/AdapterMoment";
 import { createEvent } from "../../store/events/actions";
 import { useHistory } from "react-router-dom";
 import { showMessageWithTimeout } from "../../store/appState/actions";
+import Select from "@mui/material/Select";
+import InputLabel from "@mui/material/InputLabel";
+import { useSelector } from "react-redux";
+import { selectAllCategories } from "../../store/categories/selectors";
+import MenuItem from "@mui/material/MenuItem";
+import { fetchAllCategories } from "../../store/categories/actions";
+import { Category } from "../../types/categoryTypes";
 
 export default function CreateEventForm() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const categories = useSelector(selectAllCategories);
+
+  useEffect(() => {
+    dispatch(fetchAllCategories());
+  }, [dispatch]);
 
   const initialState = {
     id: 0,
@@ -31,8 +43,16 @@ export default function CreateEventForm() {
     location: "",
     price: 0,
     spaceId: 0,
+    categoryId: null,
   };
+
+  const categoryInitialState = {
+    id: 0,
+    title: "",
+  };
+
   const [event, setEvent] = useState<Event>(initialState);
+  const [category, setCategory] = useState<Category>(categoryInitialState);
 
   function submitForm(e: React.SyntheticEvent) {
     e.preventDefault();
@@ -59,7 +79,7 @@ export default function CreateEventForm() {
     } else {
       dispatch(createEvent(event));
       setEvent(initialState);
-      history.push(`/mySpace`);
+      history.push(`/my-space`);
     }
   }
 
@@ -165,7 +185,13 @@ export default function CreateEventForm() {
         label="Capacity"
         type="number"
       />
-      <FormGroup>
+      <FormGroup
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
         <FormControlLabel
           control={
             <Checkbox
@@ -180,6 +206,40 @@ export default function CreateEventForm() {
           }
           label="Online Event"
         />
+        <div
+          style={{
+            display: "flex",
+            width: "60%",
+            alignItems: "center",
+          }}
+        >
+          <InputLabel id="demo-simple-select-label">Category</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={category.title}
+            style={{ width: "80%", marginLeft: "1em" }}
+          >
+            {categories.map((category) => {
+              return (
+                <MenuItem
+                  key={category.id}
+                  value={category.title}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setCategory({ id: category.id, title: category.title });
+                    setEvent({
+                      ...event,
+                      categoryId: category.id,
+                    });
+                  }}
+                >
+                  {category.title}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </div>
       </FormGroup>
       <TextField
         required
