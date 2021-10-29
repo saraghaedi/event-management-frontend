@@ -29,7 +29,7 @@ export default function HomePage() {
   const [category, setCategory] = useState<string>("");
   const filteredEvents = useSelector(selectFilteredEvents);
   const searchedEvents = useSelector(selectSearchedEvents);
-
+  console.log("text is", text);
   useEffect(() => {
     dispatch(fetchAllEvents());
     dispatch(fetchAllCategories());

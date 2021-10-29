@@ -211,8 +211,13 @@ export const fetchEventUserAttendance = (id: string) => {
 export function searchEvents(text: string) {
   return async function thunk(dispatch: Dispatch, getState: GetState) {
     dispatch(appLoading());
+    console.log(text);
     try {
-      const response: any = await axios.get(`${apiUrl}/events/search/${text}`);
+      const searchUri: string = `${apiUrl}/events/search/${
+        text ? text : "%22%22"
+      }`;
+      console.log(searchUri);
+      const response: any = await axios.get(searchUri);
       dispatch(searchedEvents(response.data));
       dispatch(appDoneLoading());
     } catch (error: any) {
