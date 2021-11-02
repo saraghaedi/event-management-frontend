@@ -1,15 +1,16 @@
-import { selectSpaceId, selectSpace } from "../store/users/selectors";
+import { selectSpaceId, selectSpace } from "../../store/users/selectors";
 import { useSelector } from "react-redux";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@mui/material/Box";
 import { Button } from "@material-ui/core";
-import EventCard from "../components/event/EventCard";
-import { Event } from "../types/eventTypes";
+import EventCard from "../../components/event/EventCard";
+import { Event } from "../../types/eventTypes";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { fetchSpaceById } from "../store/users/actions";
+import { fetchSpaceById } from "../../store/users/actions";
 import { useDispatch } from "react-redux";
+import "./SpaceDetailsPage.css";
 
 const useStyles = makeStyles((theme) => ({
   btn: {
@@ -35,6 +36,7 @@ export default function SpaceDetailsPage() {
   }, [dispatch, spaceId]);
   return (
     <Box
+      className="main-box"
       margin="1em auto"
       width="90%"
       display="flex"
@@ -43,20 +45,8 @@ export default function SpaceDetailsPage() {
       alignItems="center"
       border="1px solid #d1d1d1"
       borderRadius="1%"
-      style={{
-        backgroundColor: "#d8f3dc",
-        boxShadow: "10px 10px 5px grey",
-      }}
     >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          width: "96%",
-          margin: "1em",
-          padding: "1em",
-        }}
-      >
+      <div className="header-container">
         <Box display="flex" flexDirection="column" margin="1em">
           <Typography
             variant="h2"
@@ -74,27 +64,14 @@ export default function SpaceDetailsPage() {
           </Typography>
         </Box>
         {space.logo_url ? (
-          <img
-            style={{ width: "20%", borderRadius: "15%" }}
-            src={space.logo_url}
-            alt={space.title}
-          />
+          <img className="image" src={space.logo_url} alt={space.title} />
         ) : null}
       </div>
 
-      <Link
-        to={`/${space.id}/new-event`}
-        style={{ textDecoration: "none", padding: "1em" }}
-      >
+      <Link className="new-event-link" to={`/${space.id}/new-event`}>
         <Button className={classes.btn}>Create a new event</Button>
       </Link>
-      <Box
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-around",
-        }}
-      >
+      <Box display="flex" flexWrap="wrap" justifyContent="space-around">
         {space.events.map((event: Event) => {
           return (
             <EventCard

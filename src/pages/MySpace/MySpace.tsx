@@ -1,10 +1,11 @@
-import CreateSpaceForm from "../components/space/CreateSpaceForm";
-import SpaceDetailsPage from "./SpaceDetailsPage";
+import CreateSpaceForm from "../../components/space/CreateSpaceForm";
+import SpaceDetailsPage from "../SpaceDetailsPage/SpaceDetailsPage";
 import { useSelector } from "react-redux";
-import { selectSpace, selectToken } from "../store/users/selectors";
-import AuthModal from "../components/auth/AuthModal";
+import { selectSpace, selectToken } from "../../store/users/selectors";
+import AuthModal from "../../components/auth/AuthModal";
 import { Box } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
+
 export default function MySpace() {
   const space = useSelector(selectSpace);
   const token = useSelector(selectToken);

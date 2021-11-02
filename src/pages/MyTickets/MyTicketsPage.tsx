@@ -1,10 +1,11 @@
-import TicketCard from "../components/event/TicketCard";
-import { selectUserEvents } from "../store/users/selectors";
+import TicketCard from "../../components/event/TicketCard";
+import { selectUserEvents } from "../../store/users/selectors";
 import { useSelector } from "react-redux";
-import { selectToken } from "../store/users/selectors";
-import AuthModal from "../components/auth/AuthModal";
+import { selectToken } from "../../store/users/selectors";
+import AuthModal from "../../components/auth/AuthModal";
 import { Box } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
+import "./MyTicketsPage.css";
 
 export default function MyTicketsPage() {
   const userEvents = useSelector(selectUserEvents);
@@ -35,6 +36,7 @@ export default function MyTicketsPage() {
         </div>
       ) : userEvents?.length! > 0 ? (
         <Box
+          className="main-box"
           margin="1em auto"
           width="90%"
           display="flex"
@@ -43,10 +45,6 @@ export default function MyTicketsPage() {
           alignItems="center"
           border="1px solid #d1d1d1"
           borderRadius="1%"
-          style={{
-            backgroundColor: "#d8f3dc",
-            boxShadow: "10px 10px 5px grey",
-          }}
         >
           {userEvents?.map((userEvent) => {
             return (
@@ -66,7 +64,7 @@ export default function MyTicketsPage() {
           variant="h5"
           component="div"
           gutterBottom
-          style={{ margin: "1em auto" }}
+          style={{ margin: "1em" }}
         >
           You have no tickets yet! Go to your home page and find an exciting
           event to join!

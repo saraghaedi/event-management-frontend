@@ -1,0 +1,30 @@
+.main-box {
+  background-color: rgb(183, 228, 199);
+  box-shadow: 10px 10px 5px grey;
+}
+
+.image {
+  width: 30%;
+  border-radius: 10%;
+}
+
+.desc {
+  color: rgb(8, 28, 21);
+}
+
+.info-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid 1px white;
+  border-radius: 10px;
+  background-color: white;
+  padding: 1em;
+  margin: 0 1em;
+  box-shadow: 10px 10px 5px;
+}
+
+.ticket-nu {
+  margin: 1em 0;
+  width: 100%;
+}

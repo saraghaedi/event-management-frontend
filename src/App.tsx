@@ -4,13 +4,13 @@ import NavBar from "./components/navigation/NavBar";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
 import { getUserWithStoredToken } from "./store/users/actions";
-import EventDetailsPage from "./pages/EventDetailPage";
+import EventDetailsPage from "./pages/EventDetailPage/EventDetailPage";
 import CreateEventForm from "./components/event/CreateEventForm";
-import MyTicketsPage from "./pages/MyTicketsPage";
+import MyTicketsPage from "./pages/MyTickets/MyTicketsPage";
 import MessageBox from "./components/general/MessageBox";
 
-import HomePage from "./pages/HomePage";
-import MySpace from "./pages/MySpace";
+import HomePage from "./pages/Homepage/HomePage";
+import MySpace from "./pages/MySpace/MySpace";
 
 function App() {
   const dispatch = useDispatch();

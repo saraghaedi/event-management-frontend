@@ -1,0 +1,22 @@
+.main-box {
+  background-color: #d8f3dc;
+  box-shadow: 10px 10px 5px grey;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  width: 96%;
+  margin: 1em;
+  padding: 1em;
+}
+
+.image {
+  width: 20%;
+  border-radius: 15%;
+}
+
+.new-event-link {
+  text-decoration: none;
+  padding: 1em;
+}

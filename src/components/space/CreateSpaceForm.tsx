@@ -8,7 +8,7 @@ import Box from "@mui/material/Box";
 import { createSpace } from "../../store/users/actions";
 import Typography from "@mui/material/Typography";
 import { showMessageWithTimeout } from "../../store/appState/actions";
-
+import "./createSpaceForm.css";
 export default function CreateSpaceForm() {
   const dispatch = useDispatch();
   const initialState = {
@@ -32,14 +32,7 @@ export default function CreateSpaceForm() {
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        width: "50%",
-        margin: "10% auto",
-      }}
-    >
+    <div className="main-box">
       <Box display="flex" flexDirection="column" alignItems="center">
         <Typography gutterBottom variant="h4" component="div">
           Create your own space

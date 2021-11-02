@@ -1,0 +1,20 @@
+.main-box {
+  background-color: #d8f3dc;
+  box-shadow: 10px 10px 5px grey;
+}
+.search-box {
+  width: 60%;
+  background-color: #b7e4c7;
+}
+
+.drop-down {
+  width: 15%;
+  background-color: #b7e4c7;
+}
+
+.events-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1em 10px;
+  justify-content: center;
+}

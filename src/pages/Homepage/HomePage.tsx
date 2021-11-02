@@ -1,25 +1,26 @@
-import EventCard from "../components/event/EventCard";
-import { fetchAllEvents } from "../store/events/actions";
+import EventCard from "../../components/event/EventCard";
+import { fetchAllEvents } from "../../store/events/actions";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {
   selectAllEvents,
   selectSearchedEvents,
   selectFilteredEvents,
-} from "../store/events/selectors";
+} from "../../store/events/selectors";
 import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Event } from "../types/eventTypes";
+import { Event } from "../../types/eventTypes";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { selectAllCategories } from "../store/categories/selectors";
-import { fetchAllCategories } from "../store/categories/actions";
-import { filterEvents, searchEvents } from "../store/events/actions";
+import { selectAllCategories } from "../../store/categories/selectors";
+import { fetchAllCategories } from "../../store/categories/actions";
+import { filterEvents, searchEvents } from "../../store/events/actions";
+import "./HomePage.css";
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ export default function HomePage() {
   const [category, setCategory] = useState<string>("");
   const filteredEvents = useSelector(selectFilteredEvents);
   const searchedEvents = useSelector(selectSearchedEvents);
-  console.log("text is", text);
+
   useEffect(() => {
     dispatch(fetchAllEvents());
     dispatch(fetchAllCategories());
@@ -42,6 +43,7 @@ export default function HomePage() {
 
   return (
     <Box
+      className="main-box"
       margin="1em auto"
       width="90%"
       display="flex"
@@ -50,12 +52,9 @@ export default function HomePage() {
       alignItems="center"
       border="1px solid #d1d1d1"
       borderRadius="1%"
-      style={{
-        backgroundColor: "#d8f3dc",
-        boxShadow: "10px 10px 5px grey",
-      }}
     >
       <Typography
+        className="title"
         gutterBottom
         variant="h4"
         component="div"
@@ -65,9 +64,9 @@ export default function HomePage() {
       </Typography>
       <Box style={{ display: "flex", width: "100%", justifyContent: "center" }}>
         <TextField
+          className="search-box"
           id="filled-basic"
           label="search"
-          style={{ width: "60%", backgroundColor: "#b7e4c7" }}
           value={text}
           onChange={(event) => setText(event.target.value)}
         />
@@ -85,7 +84,7 @@ export default function HomePage() {
           search
         </Button>
 
-        <FormControl style={{ width: "15%", backgroundColor: "#b7e4c7" }}>
+        <FormControl className="drop-down">
           <InputLabel id="demo-simple-select-label">Category</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -112,14 +111,7 @@ export default function HomePage() {
         </FormControl>
       </Box>
       {searchedEvents.length > 0 ? (
-        <Box
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            margin: "1em 10px",
-            justifyContent: "center",
-          }}
-        >
+        <Box className="events-container">
           {searchedEvents.map((event: Event) => {
             return (
               <EventCard
@@ -133,14 +125,7 @@ export default function HomePage() {
           })}
         </Box>
       ) : filteredEvents.length > 0 ? (
-        <Box
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            margin: "1em 10px",
-            justifyContent: "center",
-          }}
-        >
+        <Box className="events-container">
           {filteredEvents.map((event: Event) => {
             return (
               <EventCard
@@ -154,14 +139,7 @@ export default function HomePage() {
           })}
         </Box>
       ) : (
-        <Box
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            margin: "1em 10px",
-            justifyContent: "center",
-          }}
-        >
+        <Box className="events-container">
           {" "}
           {events.map((event: Event) => {
             return (

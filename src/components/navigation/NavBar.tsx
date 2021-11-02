@@ -11,6 +11,7 @@ import { Button } from "@material-ui/core";
 import AuthModal from "../auth/AuthModal";
 import Logout from "../auth/Logout";
 import { selectUser } from "../../store/users/selectors";
+import "./NavBar.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   btn: {
-    // marginLeft: "1vw",
     fontWeight: "bold",
     color: "#aa0d00",
     backgroundColor: "#ffffff",
@@ -49,19 +49,13 @@ export default function ButtonAppBar(props: any) {
             width="100%"
             marginX={4}
           >
-            <Link style={{ color: "white", textDecoration: "none" }} to="/">
+            <Link className="link" to="/">
               <Button className={classes.btn}>Home </Button>
             </Link>
-            <Link
-              style={{ color: "white", textDecoration: "none" }}
-              to="/my-space"
-            >
+            <Link className="link" to="/my-space">
               <Button className={classes.btn}>My Space</Button>
             </Link>
-            <Link
-              style={{ color: "white", textDecoration: "none" }}
-              to="/my-tickets"
-            >
+            <Link className="link" to="/my-tickets">
               <Button className={classes.btn}>My tickets</Button>
             </Link>
             <Box display="flex" alignItems="center" justifyContent="flex-end">
