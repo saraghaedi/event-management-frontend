@@ -4,18 +4,18 @@
 
 ## Table of contents:
 
-- **[App demo](#App-demo)**
+- **[Introduction](#Introduction)**
 - **[Technology used](#technology-used)**
 - **[Goals for this project](#goals-for-this-project)**
 - **[User Stories and Wireframe](#user-stories-and-wireframe)**
-- **[Git workflow](#git-workflow)**
+<!-- - **[Git workflow](#git-workflow)** -->
 - **[Server repository](#Server-repository)**
 
 ## **Introduction**
 
 This is an app which you can define your events in it, or join others events by buying tickets!
 
-## **Demo**
+<!-- ## **Demo** -->
 
 ## **Technologies used**
 
@@ -49,9 +49,9 @@ The main goal of this project is to gain experience developing a full-stack app.
 - [UML](https://dbdiagram.io/d/61601331940c4c4eec8baab0)
 - [Wire frame](https://wireframepro.mockflow.com/space/event-management)
 
-## Git workflow
+<!-- ## Git workflow
 
-To be continued...
+To be continued... -->
 
 ## Server-repository
 
