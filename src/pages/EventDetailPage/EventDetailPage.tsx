@@ -137,7 +137,7 @@ export default function EventDetailsPage() {
             Location : {event.location}
           </Typography>
         </div>
-        <div className="info-box">
+        <div className="info-box" id="info-box">
           <TextField
             className="ticket-nu"
             inputProps={{ min: "1", max: `${event.capacity}`, step: "1" }}
