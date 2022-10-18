@@ -1,20 +1,21 @@
-import * as React from "react";
-import { useParams } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
-import TextField from "@mui/material/TextField";
-import { useEffect } from "react";
-import { fetchEventsById } from "../../store/events/actions";
-import { selectEventdetails } from "../../store/events/selectors";
-import { useState } from "react";
-import { buyTicket } from "../../store/events/actions";
-import { selectToken, selectSpaceId } from "../../store/users/selectors";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
+import * as React from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
 import UserAttendanceTable from "../../components/general/UserAttendanceTable";
-import { fetchEventUserAttendance } from "../../store/events/actions";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import {
+  buyTicket,
+  fetchEventsById,
+  fetchEventUserAttendance,
+} from "../../store/events/actions";
+import { selectEventdetails } from "../../store/events/selectors";
+import { selectSpaceId, selectToken } from "../../store/users/selectors";
 import "./EventDetailPage.css";
 const moment = require("moment");
 
@@ -63,6 +64,17 @@ export default function EventDetailsPage() {
       dispatch(fetchEventUserAttendance(id));
     }
   }, [dispatch, id, token]);
+
+  useEffect(() => {
+    if (event.id) {
+      (window as any).dataLayer.push({
+        event: "detailPageView",
+        eventId: event.id,
+        price: event.price,
+        capacity: event.capacity,
+      });
+    }
+  }, [event]);
 
   return (
     <Box
